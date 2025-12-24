@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-[75%] lg:w-[90%] xl:w-[70%] bg-[#D1D3D4] dark:bg-white backdrop-blur-md shadow-lg lg:px-6 py-3 transition-transform duration-300 ease-out ${
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-[75%] lg:w-[90%] xl:w-[70%] bg-[#E5E7EB]/90 dark:bg-[#234C6A]/80 backdrop-blur-md shadow-lg lg:px-6 transition-transform duration-300 ease-out ${
         isOpen
           ? "scale-y-100 rounded-2xl lg:rounded-full"
           : "scale-y-[0.95] rounded-full"
@@ -36,29 +36,20 @@ export default function Navbar() {
             height={48}
             className="w-12 h-10"
           />
-          <p className="hidden lg:block text-[#C1856D] font-bold text-md md:text-xl">
+          <p className="hidden lg:block text-[#374151] dark:text-[#EBE1D1] font-bold text-md md:text-xl">
             Muhammad Fauzan
           </p>
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex gap-6 text-[#C1856D] font-medium items-center justify-center">
-          <Link
-            href="/"
-            className="hover:text-[#C1856D] hover:border-b hover:border-[#C1856D]"
-          >
+        <div className="hidden lg:flex gap-6 text-[#374151] dark:text-[#EBE1D1] font-medium items-center justify-center">
+          <Link href="/" className="hover:text-[#FEB05D]">
             Home
           </Link>
-          <Link
-            href="#about"
-            className="hover:text-[#C1856D] hover:border-b hover:border-[#C1856D]"
-          >
+          <Link href="#about" className="hover:text-[#FEB05D]">
             About
           </Link>
-          <Link
-            href="#services"
-            className="hover:text-[#C1856D] hover:border-b hover:border-[#C1856D]"
-          >
+          <Link href="#services" className="hover:text-[#FEB05D]">
             Pelayanan
           </Link>
           <DropdownMenu>
@@ -103,7 +94,7 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 size="icon"
-                className="text-[#44444E] bg-amber-300"
+                className="text-[#44444E] dark:text-white bg-amber-300"
               >
                 <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
                 <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
@@ -180,14 +171,26 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden flex flex-col items-center gap-4 pb-6 pt-2 text-[#547792] rounded-2xl">
-          <Link href="/" onClick={() => setIsOpen(false)}>
+        <div className="lg:hidden flex flex-col items-center gap-4 pb-6 pt-2 text-[#547792] dark:text-white rounded-2xl">
+          <Link
+            href="/"
+            className="hover:text-[#FEB05D]"
+            onClick={() => setIsOpen(false)}
+          >
             Home
           </Link>
-          <Link href="#about" onClick={() => setIsOpen(false)}>
+          <Link
+            href="#about"
+            className="hover:text-[#FEB05D]"
+            onClick={() => setIsOpen(false)}
+          >
             About
           </Link>
-          <Link href="#services" onClick={() => setIsOpen(false)}>
+          <Link
+            href="#services"
+            className="hover:text-[#FEB05D]"
+            onClick={() => setIsOpen(false)}
+          >
             Pelayanan
           </Link>
         </div>

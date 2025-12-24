@@ -1,6 +1,6 @@
 "use client";
 
-import { Rubik } from "next/font/google";
+import { Comic_Neue, Rubik } from "next/font/google";
 import "./css/globals.css";
 import "./css/style.css";
 import Navbar from "@/components/Navbar";
@@ -11,6 +11,12 @@ const rubik = Rubik({
   subsets: ["latin"],
 });
 
+const comicNeue = Comic_Neue({
+  variable: "--font-comic-neue",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${rubik.variable}`}>
+      <body className={`${rubik.variable} ${comicNeue.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

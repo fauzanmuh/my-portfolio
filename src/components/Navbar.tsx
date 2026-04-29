@@ -52,6 +52,9 @@ export default function Navbar() {
           <Link href="#skills" className="hover:text-[#FEB05D]">
             Skills
           </Link>
+          <Link href="#certificates" className="hover:text-[#FEB05D]">
+            Certificates
+          </Link>
           <Link href="#services" className="hover:text-[#FEB05D]">
             Pelayanan
           </Link>
@@ -195,6 +198,13 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             Skills
+          </Link>
+          <Link
+            href="#certificates"
+            className="hover:text-[#FEB05D]"
+            onClick={() => setIsOpen(false)}
+          >
+            Certificates
           </Link>
           <Link
             href="#services"

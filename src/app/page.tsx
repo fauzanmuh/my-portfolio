@@ -1,3 +1,4 @@
+import About from "@/components/About";
 import Hero from "@/components/Hero";
 import { Metadata } from "next";
 
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <About />
     </>
   );
 }

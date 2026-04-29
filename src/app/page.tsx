@@ -1,5 +1,6 @@
 import About from "@/components/About";
 import Hero from "@/components/Hero";
+import Skills from "@/components/Skills";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <Hero />
       <About />
+      <Skills />
     </>
   );
 }

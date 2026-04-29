@@ -2,11 +2,28 @@
 
 import { useTheme } from "next-themes";
 import Squares from "./Squares";
-import { HandMetal } from "lucide-react";
+import { Github, HandMetal, Instagram, Linkedin } from "lucide-react";
 import { TypewriterEffect } from "./ui/typewriter-effect";
 
 export default function Hero() {
   const { theme } = useTheme();
+  const socialLinks = [
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/fauzanmuh/",
+      icon: Linkedin,
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/fauzanmuh",
+      icon: Github,
+    },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/fauzanmuh__/",
+      icon: Instagram,
+    },
+  ];
   const words = [
     {
       text: "A",
@@ -65,6 +82,25 @@ export default function Hero() {
           </div>
           <div className="mt-3">
             <TypewriterEffect words={words} cursorClassName="text-[#DE802B]" />
+          </div>
+          <div className="mt-8 flex flex-col items-center gap-3 pointer-events-auto">
+            <p className="text-sm font-medium uppercase tracking-[0.24em] text-[#9A5A1C] dark:text-[#FFD08A]">
+              Get In Touch
+            </p>
+            <div className="flex items-center justify-center gap-3">
+              {socialLinks.map(({ name, href, icon: Icon }) => (
+                <a
+                  key={name}
+                  href={href}
+                  aria-label={name}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-[#FEB05D]/60 bg-white/70 text-[#DE802B] shadow-[0_10px_30px_rgba(254,176,93,0.2)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#FEB05D] hover:text-[#1F2937] hover:shadow-[0_16px_40px_rgba(254,176,93,0.35)] dark:bg-[#1F2937]/70 dark:text-[#FEB05D] dark:hover:text-[#111827]"
+                >
+                  <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

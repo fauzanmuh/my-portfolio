@@ -61,9 +61,6 @@ export default function Navbar() {
           <Link href="#contact" className="hover:text-[#FEB05D]">
             Contact
           </Link>
-          <Link href="#services" className="hover:text-[#FEB05D]">
-            Pelayanan
-          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button

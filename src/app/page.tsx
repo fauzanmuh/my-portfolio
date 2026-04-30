@@ -8,9 +8,10 @@ import Skills from "@/components/Skills";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
+  title: "My Portfolio - Muhammad Fauzan",
   description: "Welcome to my personal portfolio website.",
 };
+
 export default function Home() {
   return (
     <>

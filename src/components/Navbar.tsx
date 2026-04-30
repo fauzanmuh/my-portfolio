@@ -11,12 +11,58 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+
+const navLinks = [
+  { id: "home", label: "Home", href: "/" },
+  { id: "about", label: "About", href: "#about" },
+  { id: "skills", label: "Skills", href: "#skills" },
+  { id: "certificates", label: "Certificates", href: "#certificates" },
+  { id: "projects", label: "Projects", href: "#projects" },
+  { id: "contact", label: "Contact", href: "#contact" },
+];
 
 export default function Navbar() {
   const { setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + 140;
+
+      if (window.scrollY < window.innerHeight * 0.35) {
+        setActiveSection("home");
+        return;
+      }
+
+      let currentSection = "home";
+
+      for (const link of navLinks) {
+        if (link.id === "home") continue;
+
+        const element = document.getElementById(link.id);
+
+        if (!element) continue;
+
+        if (scrollPosition >= element.offsetTop) {
+          currentSection = link.id;
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
 
   return (
     <nav
@@ -42,25 +88,31 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex gap-6 text-[#374151] dark:text-[#EBE1D1] font-medium items-center justify-center">
-          <Link href="/" className="hover:text-[#FEB05D]">
-            Home
-          </Link>
-          <Link href="#about" className="hover:text-[#FEB05D]">
-            About
-          </Link>
-          <Link href="#skills" className="hover:text-[#FEB05D]">
-            Skills
-          </Link>
-          <Link href="#certificates" className="hover:text-[#FEB05D]">
-            Certificates
-          </Link>
-          <Link href="#projects" className="hover:text-[#FEB05D]">
-            Projects
-          </Link>
-          <Link href="#contact" className="hover:text-[#FEB05D]">
-            Contact
-          </Link>
+        <div className="hidden lg:flex items-center justify-center gap-2 text-[#374151] dark:text-[#EBE1D1] font-medium">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+
+            return (
+              <Link
+                key={link.id}
+                href={link.href}
+                className={`relative rounded-full px-4 py-2 transition-colors duration-300 ${
+                  isActive
+                    ? "text-[#1F2937] dark:text-[#111827]"
+                    : "hover:text-[#FEB05D]"
+                }`}
+              >
+                {isActive ? (
+                  <motion.span
+                    layoutId="active-nav-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-[#FEB05D] shadow-[0_10px_24px_rgba(254,176,93,0.28)]"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                ) : null}
+                {link.label}
+              </Link>
+            );
+          })}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -181,55 +233,24 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="lg:hidden flex flex-col items-center gap-4 pb-6 pt-2 text-[#547792] dark:text-white rounded-2xl">
-          <Link
-            href="/"
-            className="hover:text-[#FEB05D]"
-            onClick={() => setIsOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
-            href="#about"
-            className="hover:text-[#FEB05D]"
-            onClick={() => setIsOpen(false)}
-          >
-            About
-          </Link>
-          <Link
-            href="#skills"
-            className="hover:text-[#FEB05D]"
-            onClick={() => setIsOpen(false)}
-          >
-            Skills
-          </Link>
-          <Link
-            href="#certificates"
-            className="hover:text-[#FEB05D]"
-            onClick={() => setIsOpen(false)}
-          >
-            Certificates
-          </Link>
-          <Link
-            href="#projects"
-            className="hover:text-[#FEB05D]"
-            onClick={() => setIsOpen(false)}
-          >
-            Projects
-          </Link>
-          <Link
-            href="#contact"
-            className="hover:text-[#FEB05D]"
-            onClick={() => setIsOpen(false)}
-          >
-            Contact
-          </Link>
-          <Link
-            href="#services"
-            className="hover:text-[#FEB05D]"
-            onClick={() => setIsOpen(false)}
-          >
-            Pelayanan
-          </Link>
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+
+            return (
+              <Link
+                key={link.id}
+                href={link.href}
+                className={`rounded-full px-4 py-2 transition-colors duration-300 ${
+                  isActive
+                    ? "bg-[#FEB05D] text-[#1F2937]"
+                    : "hover:text-[#FEB05D]"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </nav>

@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import Certificates from "@/components/Certificates";
 import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import { Metadata } from "next";
 
@@ -15,6 +16,7 @@ export default function Home() {
       <About />
       <Skills />
       <Certificates />
+      <Projects />
     </>
   );
 }

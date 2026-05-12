@@ -77,11 +77,11 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <Image
-            src="/assets/logoku.png"
+            src="/assets/logo-me.png"
             alt="Logo"
             width={48}
             height={48}
-            className="w-12 h-10"
+            className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl"
           />
           <p className="hidden lg:block text-[#374151] dark:text-[#EBE1D1] font-bold text-md md:text-xl">
             Muhammad Fauzan

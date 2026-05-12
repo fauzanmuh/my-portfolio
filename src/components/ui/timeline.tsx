@@ -55,7 +55,7 @@ export const Timeline = ({
 
       <div ref={ref} className="relative mx-auto max-w-7xl pb-20">
         {data.map((item) => (
-          <div key={item.id} className="flex justify-start pt-10 md:gap-10 md:pt-32">
+          <div key={item.id} className="flex justify-start pt-8 md:gap-4">
             <div className="sticky top-40 z-40 flex max-w-xs self-start md:w-full lg:max-w-sm">
               <div className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#FFF8ED] dark:bg-[#102437]">
                 <div className="h-4 w-4 rounded-full border border-[#DE802B]/40 bg-[#FEB05D] p-2 shadow-[0_0_0_6px_rgba(254,176,93,0.14)] dark:border-[#FEB05D]/40 dark:bg-[#FFD08A]" />
@@ -76,14 +76,14 @@ export const Timeline = ({
 
         <div
           style={{ height: `${height}px` }}
-          className="absolute left-8 top-0 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent via-[#DE802B]/20 to-transparent [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8 dark:via-[#FEB05D]/20"
+          className="absolute left-8 top-0 w-0.5 overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent via-[#DE802B]/20 to-transparent mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8 dark:via-[#FEB05D]/20"
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-[#DE802B] via-[#FEB05D] to-transparent"
+            className="absolute inset-x-0 top-0 w-0.5 rounded-full bg-linear-to-t from-[#DE802B] via-[#FEB05D] to-transparent"
           />
         </div>
       </div>

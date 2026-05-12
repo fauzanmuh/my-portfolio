@@ -7,13 +7,18 @@ export default function CareerTimeline() {
       title: "2025 - Now",
       content: (
         <div className="rounded-[28px] border border-white/40 bg-white/75 p-6 shadow-[0_20px_60px_rgba(154,90,28,0.12)] backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#B9681D] dark:text-[#FEB05D]">
-            PT. BMT Media Malang
-          </p>
-          <h3 className="mt-3 font-comic-neue text-2xl font-bold text-[#1F2937] dark:text-white">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <p className="text-xs lg:text-sm font-semibold uppercase tracking-[0.24em] text-[#B9681D] dark:text-[#FEB05D]">
+              PT. BMT Media Malang
+            </p>
+            <p className="shrink-0 text-[10px] lg:text-xs font-semibold uppercase tracking-[0.18em] text-[#C98A4B] dark:text-[#FFD08A]">
+              Apr 2025 - Now
+            </p>
+          </div>
+          <h3 className="mt-3 font-comic-neue text-lg lg:text-2xl font-bold text-[#1F2937] dark:text-white">
             Full Stack Web Developer
           </h3>
-          <ul className="mt-5 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
+          <ul className="mt-3 lg:mt-5 space-y-3 text-xs lg:text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
               Bertanggung jawab dalam pengembangan, pemeliharaan, dan
@@ -49,13 +54,18 @@ export default function CareerTimeline() {
       title: "2024",
       content: (
         <div className="rounded-[28px] border border-white/40 bg-white/75 p-6 shadow-[0_20px_60px_rgba(154,90,28,0.12)] backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#B9681D] dark:text-[#FEB05D]">
-            PT. BMT Media Malang
-          </p>
-          <h3 className="mt-3 font-comic-neue text-2xl font-bold text-[#1F2937] dark:text-white">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <p className="text-xs lg:text-sm font-semibold uppercase tracking-[0.24em] text-[#B9681D] dark:text-[#FEB05D]">
+              PT. BMT Media Malang
+            </p>
+            <p className="shrink-0 text-[10px] lg:text-xs font-semibold uppercase tracking-[0.18em] text-[#C98A4B] dark:text-[#FFD08A]">
+              Sep 2024 - Mar 2025
+            </p>
+          </div>
+          <h3 className="mt-3 font-comic-neue text-lg lg:text-2xl font-bold text-[#1F2937] dark:text-white">
             Full Stack Web Developer Intern
           </h3>
-          <ul className="mt-5 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
+          <ul className="mt-5 space-y-3 text-xs lg:text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
               Mengembangkan dan memelihara fitur aplikasi web menggunakan
@@ -91,13 +101,18 @@ export default function CareerTimeline() {
       title: "2022",
       content: (
         <div className="rounded-[28px] border border-white/40 bg-white/75 p-6 shadow-[0_20px_60px_rgba(154,90,28,0.12)] backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#B9681D] dark:text-[#FEB05D]">
-            Dinas Komunikasi dan Informatika Kota Malang
-          </p>
-          <h3 className="mt-3 font-comic-neue text-2xl font-bold text-[#1F2937] dark:text-white">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <p className="text-xs lg:text-sm font-semibold uppercase tracking-[0.24em] text-[#B9681D] dark:text-[#FEB05D]">
+              Dinas Komunikasi dan Informatika Kota Malang
+            </p>
+            <p className="shrink-0 text-[10px] lg:text-xs font-semibold uppercase tracking-[0.18em] text-[#C98A4B] dark:text-[#FFD08A]">
+              Jun 2022 - Des 2022
+            </p>
+          </div>
+          <h3 className="mt-3 font-comic-neue text-lg lg:text-2xl font-bold text-[#1F2937] dark:text-white">
             Full Stack Web Developer Intern
           </h3>
-          <ul className="mt-5 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
+          <ul className="mt-5 space-y-3 text-xs lg:text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
               Membantu tim dalam perbaikan jaringan pada Puskesmas di kota
@@ -132,13 +147,18 @@ export default function CareerTimeline() {
       title: "2017",
       content: (
         <div className="rounded-[28px] border border-white/40 bg-white/75 p-6 shadow-[0_20px_60px_rgba(154,90,28,0.12)] backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#B9681D] dark:text-[#FEB05D]">
-            PT. Temprina Media Grafika Malang
-          </p>
-          <h3 className="mt-3 font-comic-neue text-2xl font-bold text-[#1F2937] dark:text-white">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <p className="text-xs lg:text-sm font-semibold uppercase tracking-[0.24em] text-[#B9681D] dark:text-[#FEB05D]">
+              PT. Temprina Media Grafika Malang
+            </p>
+            <p className="shrink-0 text-[10px] lg:text-xs font-semibold uppercase tracking-[0.18em] text-[#C98A4B] dark:text-[#FFD08A]">
+              Jan 2017 - Mar 2017
+            </p>
+          </div>
+          <h3 className="mt-3 font-comic-neue  text-lg lg:text-2xl font-bold text-[#1F2937] dark:text-white">
             IT Support Intern
           </h3>
-          <ul className="mt-5 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
+          <ul className="mt-5 space-y-3 text-xs lg:text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
               Membantu tim dalam pemasangan dan pemeliharaan jaringan internet
@@ -165,11 +185,7 @@ export default function CareerTimeline() {
       <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[#DE802B]/15 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl overflow-clip rounded-[36px] border border-white/40 bg-white/35 backdrop-blur-sm dark:border-white/10 dark:bg-[#0C1B2A]/40">
-        <Timeline
-          data={data}
-          heading="Career Timeline"
-          description="Dummy dulu, tapi section ini udah nunjukin flow perjalanan karier dari awal magang sampai makin fokus ke web development."
-        />
+        <Timeline data={data} heading="Career Timeline" />
       </div>
     </section>
   );

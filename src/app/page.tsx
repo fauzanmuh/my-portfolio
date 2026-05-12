@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
+import CareerTimeline from "@/components/CareerTimeline";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <About />
       <Skills />
+      <CareerTimeline />
       <Certificates />
       <Projects />
       <Contact />

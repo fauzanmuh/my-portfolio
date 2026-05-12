@@ -25,6 +25,16 @@ export const metadata: Metadata = {
   title: "Muhammad Fauzan | Web Developer",
   description:
     "Portfolio of Muhammad Fauzan, a Web Developer focused on building high-performance, scalable, and maintainable web applications.",
+  keywords: [
+    "Muhammad Fauzan",
+    "Muhammad",
+    "Fauzan",
+    "Muhammad Fauzan Portfolio",
+    "Portfolio Web Developer",
+    "Web Developer",
+    "Portfolio",
+    "Contact Information",
+  ],
   openGraph: {
     title: "Muhammad Fauzan | Web Developer",
     description:

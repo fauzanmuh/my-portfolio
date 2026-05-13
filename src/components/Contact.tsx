@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -8,7 +9,6 @@ import {
   Linkedin,
   Mail,
   MapPin,
-  Phone,
 } from "lucide-react";
 
 const contactItems = [
@@ -45,6 +45,53 @@ const socialLinks = [
 ];
 
 export default function Contact() {
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("sending");
+    setStatusMessage("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      subject: String(formData.get("subject") || ""),
+      message: String(formData.get("message") || ""),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send message.");
+      }
+
+      form.reset();
+      setStatus("success");
+      setStatusMessage("Message sent. I'll get back to you soon.");
+    } catch (error) {
+      setStatus("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.",
+      );
+    }
+  }
+
   return (
     <section
       id="contact"
@@ -74,8 +121,8 @@ export default function Contact() {
                 Reach Me Directly
               </h3>
               <p className="mt-3 text-sm leading-7 text-[#6B7280] dark:text-[#CBD5E1]">
-                Fastest way to connect is through email or WhatsApp. I usually
-                reply as soon as I can.
+                Fastest way to connect is through email. I usually reply as soon
+                as I can.
               </p>
 
               <div className="mt-6 space-y-4">
@@ -85,7 +132,7 @@ export default function Contact() {
                     href={href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex items-center justify-between rounded-[24px] border border-[#FEB05D]/25 bg-[#FFF8ED] px-4 py-4 transition-transform duration-300 hover:-translate-y-1 dark:bg-[#102437]/80"
+                    className="group flex items-center justify-between rounded-3xl border border-[#FEB05D]/25 bg-[#FFF8ED] px-4 py-4 transition-transform duration-300 hover:-translate-y-1 dark:bg-[#102437]/80"
                   >
                     <div className="flex items-center gap-4">
                       <div className="rounded-2xl bg-[#FEB05D]/15 p-3 text-[#DE802B] dark:bg-[#FEB05D]/10 dark:text-[#FFD08A]">
@@ -137,15 +184,17 @@ export default function Contact() {
               </h3>
             </div>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="space-y-2">
                   <span className="text-sm font-medium text-[#374151] dark:text-[#E5E7EB]">
                     Name
                   </span>
                   <input
+                    name="name"
                     type="text"
                     placeholder="Your name"
+                    required
                     className="w-full rounded-2xl border border-[#FEB05D]/25 bg-[#FFF8ED] px-4 py-3 text-sm text-[#1F2937] outline-none transition-colors focus:border-[#DE802B] dark:bg-[#102437]/80 dark:text-white dark:placeholder:text-[#94A3B8]"
                   />
                 </label>
@@ -154,8 +203,10 @@ export default function Contact() {
                     Email
                   </span>
                   <input
+                    name="email"
                     type="email"
                     placeholder="you@example.com"
+                    required
                     className="w-full rounded-2xl border border-[#FEB05D]/25 bg-[#FFF8ED] px-4 py-3 text-sm text-[#1F2937] outline-none transition-colors focus:border-[#DE802B] dark:bg-[#102437]/80 dark:text-white dark:placeholder:text-[#94A3B8]"
                   />
                 </label>
@@ -166,8 +217,10 @@ export default function Contact() {
                   Subject
                 </span>
                 <input
+                  name="subject"
                   type="text"
                   placeholder="Project inquiry, collab, freelance, etc."
+                  required
                   className="w-full rounded-2xl border border-[#FEB05D]/25 bg-[#FFF8ED] px-4 py-3 text-sm text-[#1F2937] outline-none transition-colors focus:border-[#DE802B] dark:bg-[#102437]/80 dark:text-white dark:placeholder:text-[#94A3B8]"
                 />
               </label>
@@ -177,17 +230,32 @@ export default function Contact() {
                   Message
                 </span>
                 <textarea
+                  name="message"
                   rows={6}
                   placeholder="Tell me what you're building or what you need help with..."
+                  required
                   className="w-full resize-none rounded-2xl border border-[#FEB05D]/25 bg-[#FFF8ED] px-4 py-3 text-sm text-[#1F2937] outline-none transition-colors focus:border-[#DE802B] dark:bg-[#102437]/80 dark:text-white dark:placeholder:text-[#94A3B8]"
                 />
               </label>
 
+              {statusMessage ? (
+                <p
+                  className={`text-sm font-medium ${
+                    status === "success"
+                      ? "text-emerald-700 dark:text-emerald-300"
+                      : "text-red-700 dark:text-red-300"
+                  }`}
+                >
+                  {statusMessage}
+                </p>
+              ) : null}
+
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 rounded-full bg-[#FEB05D] px-5 py-3 mt-2 text-sm font-semibold text-[#1F2937] shadow-[0_12px_28px_rgba(254,176,93,0.28)] transition-transform duration-300 hover:-translate-y-1"
+                disabled={status === "sending"}
+                className="inline-flex items-center gap-2 rounded-full bg-[#FEB05D] px-5 py-3 mt-2 text-sm font-semibold text-[#1F2937] shadow-[0_12px_28px_rgba(254,176,93,0.28)] transition-transform duration-300 hover:-translate-y-1 cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Send Message
+                {status === "sending" ? "Sending..." : "Send Message"}
                 <ArrowUpRight className="h-4 w-4" />
               </button>
             </form>

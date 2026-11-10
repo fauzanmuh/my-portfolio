@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, ExternalLink, Github } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ExternalLink, Github, X } from "lucide-react";
+import Folder, { type FolderItem } from "@/components/Folder";
 
 type Project = {
   id: string;
@@ -176,52 +177,20 @@ const projects: Project[] = [
 ];
 
 export default function Projects() {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [selectedProject, setSelectedProject] = useState(projects[0]);
+  const [isImageOpen, setIsImageOpen] = useState(false);
+  const projectFolders = Array.from(
+    { length: Math.ceil(projects.length / 3) },
+    (_, index) => projects.slice(index * 3, index * 3 + 3),
+  );
 
   useEffect(() => {
-    const container = carouselRef.current;
-
-    if (!container) return;
-
-    const updateScrollState = () => {
-      const maxScrollLeft = container.scrollWidth - container.clientWidth;
-
-      setCanScrollLeft(container.scrollLeft > 4);
-      setCanScrollRight(container.scrollLeft < maxScrollLeft - 4);
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsImageOpen(false);
     };
-
-    updateScrollState();
-    container.addEventListener("scroll", updateScrollState, { passive: true });
-    window.addEventListener("resize", updateScrollState);
-
-    return () => {
-      container.removeEventListener("scroll", updateScrollState);
-      window.removeEventListener("resize", updateScrollState);
-    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
-
-  const handleScroll = (direction: "left" | "right") => {
-    const container = carouselRef.current;
-
-    if (!container) return;
-    if (direction === "left" && !canScrollLeft) return;
-    if (direction === "right" && !canScrollRight) return;
-
-    const card = container.querySelector<HTMLElement>("[data-project-card]");
-
-    if (!card) return;
-
-    const gap = 24;
-    const scrollAmount =
-      direction === "left" ? -(card.offsetWidth + gap) : card.offsetWidth + gap;
-
-    container.scrollBy({
-      left: scrollAmount,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <section
@@ -232,101 +201,134 @@ export default function Projects() {
       <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#DE802B]/15 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl space-y-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#B9681D] dark:text-[#FEB05D]">
-              Projects
-            </p>
-            <h2 className="font-comic-neue text-4xl font-bold lg:text-5xl">
-              A Few Things I&apos;ve Built.
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              aria-label="Scroll projects left"
-              disabled={!canScrollLeft}
-              onClick={() => handleScroll("left")}
-              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#FEB05D]/50 bg-white/80 text-[#B9681D] shadow-[0_12px_30px_rgba(154,90,28,0.14)] transition-transform duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:border-[#D6C7B4] disabled:bg-[#F5E7D1] disabled:text-[#C4A482] disabled:shadow-none disabled:hover:translate-y-0 dark:bg-white/10 dark:text-[#FFD08A] dark:disabled:border-white/10 dark:disabled:bg-white/5 dark:disabled:text-white/30 cursor-pointer"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              aria-label="Scroll projects right"
-              disabled={!canScrollRight}
-              onClick={() => handleScroll("right")}
-              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#FEB05D]/50 bg-white/80 text-[#B9681D] shadow-[0_12px_30px_rgba(154,90,28,0.14)] transition-transform duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:border-[#D6C7B4] disabled:bg-[#F5E7D1] disabled:text-[#C4A482] disabled:shadow-none disabled:hover:translate-y-0 dark:bg-white/10 dark:text-[#FFD08A] dark:disabled:border-white/10 dark:disabled:bg-white/5 dark:disabled:text-white/30 cursor-pointer"
-            >
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          </div>
+        <div className="max-w-2xl space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#B9681D] dark:text-[#FEB05D]">
+            Projects
+          </p>
+          <h2 className="font-comic-neue text-4xl font-bold lg:text-5xl">
+            A Few Things I&apos;ve Built.
+          </h2>
+          <p className="text-sm leading-7 text-neutral-600 dark:text-neutral-300">
+            Open a folder, then pick a project to see the details.
+          </p>
         </div>
 
-        <div
-          ref={carouselRef}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-2 pb-4 scrollbar-none [&::-webkit-scrollbar]:hidden"
-        >
-          {projects.map((project) => (
-            <article
-              key={project.id}
-              data-project-card
-              className="group relative flex h-full w-[92%] min-w-[92%] snap-center flex-col overflow-hidden rounded-[30px] border border-white/40 bg-white/70 shadow-[0_20px_60px_rgba(154,90,28,0.14)] backdrop-blur-md sm:w-[88%] sm:min-w-[88%] lg:mx-auto lg:w-[78%] lg:min-w-[78%]"
-            >
-              <div className="relative aspect-16/10 overflow-hidden max-h-125 sm:aspect-video">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+          {projectFolders.map((folderProjects, folderIndex) => {
+            const items: FolderItem[] = folderProjects.map((project) => ({
+              title: project.title,
+              image: project.image,
+              alt: project.title,
+            }));
+
+            return (
+              <div
+                key={folderProjects[0].id}
+                className="flex justify-center py-6"
+              >
+                <Folder
+                  items={items}
+                  label={`Projects ${String(folderIndex + 1).padStart(2, "0")}`}
+                  color={folderIndex % 2 === 0 ? "#DE802B" : "#B9681D"}
+                  paperColor="#FFF8ED"
+                  layout="spread"
+                  size={1.14}
+                  draggable={false}
+                  zoomOnClick={false}
+                  theme="light"
+                  onItemClick={(_, index) =>
+                    setSelectedProject(folderProjects[index])
+                  }
                 />
-                <div className="absolute inset-0 hidden bg-linear-to-t from-[#050816]/96 via-[#050816]/55 to-transparent transition-opacity duration-300 sm:block" />
               </div>
-
-              <div className="relative z-10 -mt-6 flex flex-1 flex-col rounded-t-[28px] bg-[#111827] p-4 text-white sm:mt-0 sm:rounded-none sm:bg-transparent sm:p-6 sm:absolute sm:inset-0 sm:justify-end">
-                <div className="space-y-3 transition-transform duration-300 sm:group-hover:-translate-y-2">
-                  <div className="flex flex-wrap gap-2">
-                    {project.stack.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-[#FEB05D]/40 bg-[#1F2937]/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#FFE2B4] shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:px-3 sm:text-xs sm:tracking-[0.18em]"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="font-comic-neue text-2xl leading-tight font-bold text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)] sm:text-3xl">
-                    {project.title}
-                  </h3>
-                </div>
-
-                <div className="mt-4 flex flex-col gap-4 sm:translate-y-6 sm:opacity-0 sm:transition-all sm:duration-300 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
-                  <p className="max-w-xl text-sm leading-7 text-[#E5E7EB]">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    <Link
-                      href={project.demoUrl}
-                      className="inline-flex items-center gap-2 rounded-full bg-[#FEB05D] px-4 py-2 text-sm font-semibold text-[#1F2937] shadow-[0_10px_24px_rgba(254,176,93,0.28)] transition-transform duration-300 hover:-translate-y-1"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Live Demo
-                    </Link>
-                    <Link
-                      href={project.codeUrl}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-[#111827]/75 px-4 py-2 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(0,0,0,0.18)] transition-transform duration-300 hover:-translate-y-1"
-                    >
-                      <Github className="h-4 w-4" />
-                      View Code
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
+            );
+          })}
         </div>
+
+        <article className="grid overflow-hidden rounded-[30px] border border-white/40 bg-[#111827] shadow-[0_20px_60px_rgba(154,90,28,0.18)] md:grid-cols-[1.1fr_0.9fr]">
+          <button
+            type="button"
+            aria-label={`View ${selectedProject.title} image in full screen`}
+            onClick={() => setIsImageOpen(true)}
+            className="group relative aspect-16/10 min-h-82 cursor-zoom-in overflow-hidden md:aspect-auto"
+          >
+            <Image
+              src={selectedProject.image}
+              alt={selectedProject.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <span className="absolute inset-0 grid place-items-center bg-[#0C1B2A]/0 text-sm font-semibold text-white opacity-0 transition-all duration-300 group-hover:bg-[#0C1B2A]/45 group-hover:opacity-100">
+              Click to expand image
+            </span>
+          </button>
+          <div className="flex flex-col justify-center p-6 text-white lg:p-8">
+            <div className="flex flex-wrap gap-2">
+              {selectedProject.stack.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-[#FEB05D]/40 bg-[#1F2937]/85 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#FFE2B4]"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+            <h3 className="mt-5 font-comic-neue text-3xl font-bold">
+              {selectedProject.title}
+            </h3>
+            <p className="mt-4 text-sm leading-7 text-[#E5E7EB]">
+              {selectedProject.description}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href={selectedProject.demoUrl}
+                className="inline-flex items-center gap-2 rounded-full bg-[#FEB05D] px-4 py-2 text-sm font-semibold text-[#1F2937] transition-transform hover:-translate-y-1"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Live Demo
+              </Link>
+              <Link
+                href={selectedProject.codeUrl}
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-1"
+              >
+                <Github className="h-4 w-4" />
+                View Code
+              </Link>
+            </div>
+          </div>
+        </article>
       </div>
+
+      {isImageOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedProject.title} preview`}
+          onClick={() => setIsImageOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#07111C]/90 p-4 backdrop-blur-sm"
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="relative h-[min(80vh,760px)] w-full max-w-6xl overflow-hidden rounded-2xl border border-white/20 bg-[#0C1B2A] shadow-2xl"
+          >
+            <Image
+              src={selectedProject.image}
+              alt={selectedProject.title}
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="object-contain"
+            />
+            <button
+              type="button"
+              aria-label="Close image preview"
+              onClick={() => setIsImageOpen(false)}
+              className="absolute right-4 top-4 grid size-10 place-items-center rounded-full bg-black/60 text-white transition-transform hover:scale-105"
+            >
+              <X className="size-5" />
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

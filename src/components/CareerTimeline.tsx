@@ -21,29 +21,29 @@ export default function CareerTimeline() {
           <ul className="mt-3 lg:mt-5 space-y-3 text-xs lg:text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Bertanggung jawab dalam pengembangan, pemeliharaan, dan
-              peningkatan performa aplikasi web menggunakan Laravel, WordPress,
-              dan React dengan framework Next.js.
+              Responsible for developing, maintaining, and improving the
+              performance of web applications using Laravel, WordPress, React,
+              and Next.js.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Mendesain, mengoptimalkan, dan mengelola database MySQL, termasuk
-              tuning query dan perbaikan struktur data untuk skalabilitas.
+              Designed, optimized, and managed MySQL databases, including query
+              tuning and data-structure improvements for scalability.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Membangun dan mengelola RESTful API yang aman, terstruktur, dan
-              scalable untuk frontend serta integrasi pihak ketiga.
+              Built and maintained secure, well-structured, and scalable RESTful
+              APIs for frontend and third-party integrations.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Berperan aktif dalam perancangan arsitektur fitur, code review,
-              pengujian, dan deployment ke environment production.
+              Actively contributed to feature architecture design, code reviews,
+              testing, and production deployments.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Berkolaborasi lintas tim untuk menerjemahkan kebutuhan bisnis
-              menjadi solusi teknis yang efektif dan maintainable.
+              Collaborated across teams to translate business requirements into
+              effective, maintainable technical solutions.
             </li>
           </ul>
         </div>
@@ -68,29 +68,28 @@ export default function CareerTimeline() {
           <ul className="mt-5 space-y-3 text-xs lg:text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Mengembangkan dan memelihara fitur aplikasi web menggunakan
-              Laravel, WordPress, dan React dengan framework Next.js di bawah
-              arahan tim.
+              Developed and maintained web application features using Laravel,
+              WordPress, React, and Next.js under team guidance.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Membantu perancangan serta pengelolaan database MySQL, termasuk
-              optimasi query dasar dan struktur tabel.
+              Assisted with the design and management of MySQL databases,
+              including basic query and table-structure optimization.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Membangun RESTful API yang efisien dan aman untuk kebutuhan
-              frontend serta integrasi pihak ketiga.
+              Built efficient and secure RESTful APIs for frontend and
+              third-party integration requirements.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Terlibat dalam proses development lifecycle: diskusi fitur,
-              testing, debugging, dan support deployment ke server.
+              Participated throughout the development lifecycle, including
+              feature discussions, testing, debugging, and deployment support.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Berkolaborasi dengan tim untuk memastikan fungsionalitas aplikasi
-              berjalan sesuai kebutuhan bisnis.
+              Collaborated with the team to ensure application functionality met
+              business requirements.
             </li>
           </ul>
         </div>
@@ -115,28 +114,27 @@ export default function CareerTimeline() {
           <ul className="mt-5 space-y-3 text-xs lg:text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Membantu tim dalam perbaikan jaringan pada Puskesmas di kota
-              Malang dan maintenance cctv kota Malang.
+              Assisted the team with network repairs at community health centers
+              in Malang and maintenance of the city's CCTV systems.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Melakukan modifikasi tampilan dan bug pada website IP Address
-              Management (IPAM) Kota Malang.
+              Modified the user interface and fixed bugs on Malang City's IP
+              Address Management (IPAM) website.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Mendapatkan project pembuatan sistem monitoring IP Address Kota
-              Malang berbasis website yang digunakan untuk mengelola IP Address
-              yang terhubung dengan server.
+              Developed a web-based IP address monitoring system for Malang City
+              to manage IP addresses connected to servers.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Melakukan testing untuk menemukan error atau bug pada aplikasi
-              yang hendak di publikasi.
+              Conducted testing to identify errors and bugs before application
+              releases.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Melakukan pembuatan manual book dari sistem yang telah diuji.
+              Created user manuals for tested systems.
             </li>
           </ul>
         </div>
@@ -161,14 +159,14 @@ export default function CareerTimeline() {
           <ul className="mt-5 space-y-3 text-xs lg:text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Membantu tim dalam pemasangan dan pemeliharaan jaringan internet
-              dan cctv kantor.
+              Assisted the team with installing and maintaining office internet
+              networks and CCTV systems.
             </li>
             <li className="flex gap-3">
               <span className="mt-1.5 block size-2 shrink-0 rounded-full bg-[#DE802B]" />
-              Melakukan pemeliharaan rutin komputer, termasuk pembaruan
-              perangkat lunak, peningkatan keamanan komputer dan jaringan, serta
-              menangani perbaikan komputer yang mengalami error.
+              Performed routine computer maintenance, including software
+              updates, computer and network security improvements, and repairs
+              for malfunctioning devices.
             </li>
           </ul>
         </div>

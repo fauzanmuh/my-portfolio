@@ -164,6 +164,15 @@ const projects: Project[] = [
       "PostgreSQL",
     ],
   },
+  {
+    id: "idisurabaya",
+    title: "IDI Cabang Surabaya",
+    description: "With team build website organization of IDI Surabaya Branch",
+    image: "/assets/projects/idisurabaya.png",
+    demoUrl: "https://idisurabaya.id/",
+    codeUrl: "#",
+    stack: ["TypeScript", "Next.js", "Tailwind CSS", "Laravel 13", "MySQL"],
+  },
 ];
 
 export default function Projects() {
@@ -257,7 +266,7 @@ export default function Projects() {
 
         <div
           ref={carouselRef}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-2 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-2 pb-4 scrollbar-none [&::-webkit-scrollbar]:hidden"
         >
           {projects.map((project) => (
             <article
@@ -265,14 +274,14 @@ export default function Projects() {
               data-project-card
               className="group relative flex h-full w-[92%] min-w-[92%] snap-center flex-col overflow-hidden rounded-[30px] border border-white/40 bg-white/70 shadow-[0_20px_60px_rgba(154,90,28,0.14)] backdrop-blur-md sm:w-[88%] sm:min-w-[88%] lg:mx-auto lg:w-[78%] lg:min-w-[78%]"
             >
-              <div className="relative aspect-[16/10] overflow-hidden max-h-[500px] sm:aspect-[16/9]">
+              <div className="relative aspect-16/10 overflow-hidden max-h-125 sm:aspect-video">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 hidden bg-gradient-to-t from-[#050816]/96 via-[#050816]/55 to-transparent transition-opacity duration-300 sm:block" />
+                <div className="absolute inset-0 hidden bg-linear-to-t from-[#050816]/96 via-[#050816]/55 to-transparent transition-opacity duration-300 sm:block" />
               </div>
 
               <div className="relative z-10 -mt-6 flex flex-1 flex-col rounded-t-[28px] bg-[#111827] p-4 text-white sm:mt-0 sm:rounded-none sm:bg-transparent sm:p-6 sm:absolute sm:inset-0 sm:justify-end">
